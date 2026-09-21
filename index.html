@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Defence — защита двора</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Обёртка держит сцену, окно сообщения и меню друг над другом -->
+  <div id="сцена">
+    <canvas id="игровое-поле" width="1280" height="720"></canvas>
+
+    <!-- Окно победы / поражения. Скрыто, пока игра идёт -->
+    <div id="окно-сообщения" class="скрыто">
+      <h1 id="заголовок-сообщения">Заголовок</h1>
+      <p id="подпись-сообщения">Подпись</p>
+      <p id="рекорд-сообщения" class="рекорд"></p>
+      <div class="кнопки-окна">
+        <button id="кнопка-заново" type="button">Играть снова</button>
+        <button id="кнопка-меню" type="button">В меню</button>
+      </div>
+    </div>
+
+    <!-- Главное меню: выбор уровня -->
+    <div id="меню">
+      <h1 class="меню-заголовок">Family Defence</h1>
+      <p class="меню-подзаголовок">Защита двора — выберите уровень</p>
+      <div id="кнопки-уровней"></div>
+      <p class="меню-статистика" id="меню-статистика"></p>
+    </div>
+  </div>
+
+  <p class="подсказка-внизу">
+    Выберите карту персонажа и щёлкните по газону. Солнечные сферы собираются кликом.
+    Молот убирает посаженного персонажа. Пробел — пауза, Escape — снять выбор.
+  </p>
+
+  <script src="game.js"></script>
+</body>
+</html>

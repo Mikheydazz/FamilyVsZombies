@@ -1,0 +1,255 @@
+/* =========================================================
+   Family Defence — оформление страницы.
+   Сам игровой интерфейс рисуется на canvas, здесь только
+   фон страницы, центрирование и окно сообщений.
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 16px;
+
+  /* Тёмно-зелёный «двор» вокруг игрового поля */
+  background: radial-gradient(circle at 50% 0%, #2f4a25 0%, #16240f 65%, #0c140a 100%);
+  color: #e8f0dd;
+  font-family: "Segoe UI", "Trebuchet MS", Arial, sans-serif;
+  user-select: none;
+}
+
+/* ---------- Сцена ---------- */
+
+#сцена {
+  position: relative;
+  width: min(1280px, 96vw);
+  aspect-ratio: 1280 / 720;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 3px solid #6b8f3a;
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.65),
+    0 0 0 6px rgba(20, 40, 12, 0.55);
+}
+
+#игровое-поле {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: #5c9a35;
+}
+
+/* ---------- Окно победы / поражения ---------- */
+
+#окно-сообщения {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px;
+  text-align: center;
+
+  background: rgba(8, 16, 6, 0.82);
+  backdrop-filter: blur(3px);
+  animation: появление 0.35s ease-out;
+}
+
+#окно-сообщения.скрыто {
+  display: none;
+}
+
+@keyframes появление {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+#заголовок-сообщения {
+  margin: 0;
+  font-size: clamp(28px, 4.4vw, 58px);
+  letter-spacing: 2px;
+  text-shadow: 0 4px 0 rgba(0, 0, 0, 0.55);
+}
+
+#окно-сообщения.победа #заголовок-сообщения {
+  color: #ffe066;
+}
+
+#окно-сообщения.поражение #заголовок-сообщения {
+  color: #ff7b6b;
+}
+
+#подпись-сообщения {
+  margin: 0;
+  max-width: 620px;
+  font-size: clamp(14px, 1.5vw, 20px);
+  line-height: 1.45;
+  color: #d6e6c4;
+}
+
+.рекорд {
+  margin: 0;
+  font-size: clamp(12px, 1.2vw, 16px);
+  color: #9fb98a;
+}
+
+#кнопка-заново {
+  padding: 13px 34px;
+  font: inherit;
+  font-size: clamp(15px, 1.5vw, 20px);
+  font-weight: 700;
+  color: #22320f;
+  cursor: pointer;
+
+  background: linear-gradient(#ffe98a, #f0b429);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 0 #a9761a, 0 8px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+#кнопка-заново:hover {
+  filter: brightness(1.06);
+}
+
+#кнопка-заново:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #a9761a, 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- Кнопки в окне сообщения ---------- */
+
+.кнопки-окна {
+  display: flex;
+  gap: 14px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#кнопка-меню {
+  padding: 13px 30px;
+  font: inherit;
+  font-size: clamp(15px, 1.5vw, 20px);
+  font-weight: 700;
+  color: #e8f0dd;
+  cursor: pointer;
+
+  background: linear-gradient(#5a6a48, #3d4a2f);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 0 #2c3520, 0 8px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+#кнопка-меню:hover {
+  filter: brightness(1.08);
+}
+
+#кнопка-меню:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #2c3520, 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- Главное меню ---------- */
+
+#меню {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 30px;
+  text-align: center;
+
+  background: radial-gradient(circle at 50% 18%, rgba(88, 128, 44, 0.92), rgba(10, 18, 7, 0.97));
+  animation: появление 0.35s ease-out;
+}
+
+#меню.скрыто {
+  display: none;
+}
+
+.меню-заголовок {
+  margin: 0;
+  font-size: clamp(40px, 6vw, 70px);
+  letter-spacing: 3px;
+  color: #ffe066;
+  text-shadow: 0 4px 0 rgba(0, 0, 0, 0.55);
+}
+
+.меню-подзаголовок {
+  margin: 0;
+  font-size: clamp(15px, 1.6vw, 22px);
+  color: #d6e6c4;
+}
+
+#кнопки-уровней {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(480px, 86%);
+  margin-top: 6px;
+}
+
+.кнопка-уровня {
+  padding: 13px 22px;
+  font: inherit;
+  font-size: clamp(15px, 1.5vw, 20px);
+  font-weight: 700;
+  color: #22320f;
+  cursor: pointer;
+
+  background: linear-gradient(#eef7d8, #b7d78a);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 0 #6b8f3a, 0 8px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.кнопка-уровня:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+
+.кнопка-уровня:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #6b8f3a, 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.кнопка-уровня.закрыт {
+  color: #6f7a5a;
+  background: linear-gradient(#3a4430, #2c3323);
+  box-shadow: 0 5px 0 #232b1b;
+  cursor: not-allowed;
+}
+
+.меню-статистика {
+  margin: 8px 0 0;
+  font-size: clamp(12px, 1.2vw, 16px);
+  color: #9fb98a;
+}
+
+/* ---------- Строка-подсказка под сценой ---------- */
+
+.подсказка-внизу {
+  margin: 0;
+  font-size: 14px;
+  color: #8fa87c;
+  text-align: center;
+}
