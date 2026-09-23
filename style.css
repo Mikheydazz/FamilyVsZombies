@@ -245,6 +245,164 @@ body {
   color: #9fb98a;
 }
 
+/* ---------- Экран выбора колоды ---------- */
+
+#колода {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 22px;
+
+  background: radial-gradient(circle at 50% 12%, rgba(70, 104, 40, 0.94), rgba(10, 18, 7, 0.98));
+  animation: появление 0.3s ease-out;
+}
+
+#колода.скрыто {
+  display: none;
+}
+
+.колода-заголовок {
+  margin: 0;
+  font-size: clamp(26px, 3.4vw, 44px);
+  letter-spacing: 2px;
+  color: #ffe066;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.55);
+}
+
+.колода-подзаголовок {
+  margin: 0;
+  font-size: clamp(14px, 1.4vw, 19px);
+  color: #d6e6c4;
+}
+
+#список-растений {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  max-width: 1000px;
+  max-height: 56%;
+  overflow-y: auto;
+  margin-top: 4px;
+  padding: 2px;
+}
+
+.карточка-растения {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 122px;
+  padding: 8px 6px 7px;
+  font: inherit;
+  color: #22320f;
+  cursor: pointer;
+
+  background: linear-gradient(#dfe9c4, #b6cf94);
+  border: 3px solid rgba(60, 40, 15, 0.55);
+  border-radius: 12px;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.карточка-растения:hover {
+  filter: brightness(1.05);
+}
+
+.карточка-растения.выбрана {
+  background: linear-gradient(#fff3c0, #f0c95a);
+  border-color: #fff2a8;
+  box-shadow: 0 0 0 3px rgba(255, 240, 160, 0.5), 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.карточка-растения canvas {
+  display: block;
+  width: 100px;
+  height: 84px;
+  border-radius: 8px;
+  background: rgba(143, 191, 98, 0.55);
+}
+
+.имя-растения {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.цена-растения {
+  font-size: 11px;
+  font-weight: 700;
+  color: #6a4a10;
+}
+
+.роль-растения {
+  font-size: 10px;
+  color: #4c5a33;
+  text-align: center;
+  line-height: 1.1;
+}
+
+#кнопка-начать {
+  padding: 13px 30px;
+  font: inherit;
+  font-size: clamp(15px, 1.5vw, 20px);
+  font-weight: 700;
+  color: #22320f;
+  cursor: pointer;
+
+  background: linear-gradient(#ffe98a, #f0b429);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 0 #a9761a, 0 8px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+#кнопка-начать:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+
+#кнопка-начать:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #a9761a, 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+#кнопка-начать:disabled {
+  color: #77705c;
+  background: linear-gradient(#6a6552, #4c483a);
+  box-shadow: 0 5px 0 #33301f;
+  cursor: not-allowed;
+}
+
+#кнопка-назад {
+  padding: 13px 30px;
+  font: inherit;
+  font-size: clamp(15px, 1.5vw, 20px);
+  font-weight: 700;
+  color: #e8f0dd;
+  cursor: pointer;
+
+  background: linear-gradient(#5a6a48, #3d4a2f);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 0 #2c3520, 0 8px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+#кнопка-назад:hover {
+  filter: brightness(1.08);
+}
+
+#кнопка-назад:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #2c3520, 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
 /* ---------- Строка-подсказка под сценой ---------- */
 
 .подсказка-внизу {
