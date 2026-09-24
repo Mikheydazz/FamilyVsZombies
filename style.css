@@ -201,18 +201,31 @@ body {
 }
 
 #кнопки-уровней {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 10px;
-  width: min(480px, 86%);
+  width: min(1080px, 96%);
   margin-top: 6px;
 }
 
+/* На узком экране пятёрка в ряд уже не читается — переносим по три */
+@media (max-width: 900px) {
+  #кнопки-уровней {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 .кнопка-уровня {
-  padding: 13px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 66px;
+  padding: 10px 12px;
   font: inherit;
-  font-size: clamp(15px, 1.5vw, 20px);
+  font-size: clamp(13px, 1.15vw, 17px);
   font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
   color: #22320f;
   cursor: pointer;
 
@@ -243,6 +256,71 @@ body {
   margin: 8px 0 0;
   font-size: clamp(12px, 1.2vw, 16px);
   color: #9fb98a;
+}
+
+/* Два экрана меню: стартовый с кнопкой «Играть» и выбор уровня */
+#меню-главное,
+#меню-уровни {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+#меню-главное.скрыто,
+#меню-уровни.скрыто {
+  display: none;
+}
+
+#кнопка-играть {
+  padding: 16px 62px;
+  font: inherit;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #3a2c00;
+  cursor: pointer;
+
+  background: linear-gradient(#ffe98a, #f0b429);
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 6px 0 #a9761a, 0 10px 22px rgba(0, 0, 0, 0.45);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+#кнопка-играть:hover {
+  filter: brightness(1.07);
+}
+
+#кнопка-играть:active {
+  transform: translateY(5px);
+  box-shadow: 0 1px 0 #a9761a, 0 5px 12px rgba(0, 0, 0, 0.45);
+}
+
+#кнопка-в-главное {
+  margin-top: 4px;
+  padding: 11px 28px;
+  font: inherit;
+  font-size: clamp(14px, 1.4vw, 18px);
+  font-weight: 700;
+  color: #e8f0dd;
+  cursor: pointer;
+
+  background: linear-gradient(#5a6a48, #3d4a2f);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 0 #2c3520, 0 8px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+#кнопка-в-главное:hover {
+  filter: brightness(1.08);
+}
+
+#кнопка-в-главное:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #2c3520, 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 /* ---------- Экран выбора колоды ---------- */
