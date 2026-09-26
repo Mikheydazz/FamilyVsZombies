@@ -51,6 +51,25 @@
         <button id="кнопка-назад" type="button">Назад</button>
       </div>
     </div>
+
+        <!-- Секретное окно чита: открывается Shift+L в меню -->
+    <div id="окно-чита" class="скрыто">
+      <div class="окно-чита-карточка">
+        <h2 class="окно-чита-заголовок">Открыть уровни</h2>
+        <p class="окно-чита-подпись">Сколько уровней сделать доступными?</p>
+
+        <input id="поле-чита" class="поле-чита" type="number" min="1" max="14"
+               inputmode="numeric" autocomplete="off">
+
+        <p id="ошибка-чита" class="ошибка-чита"></p>
+
+        <div class="кнопки-окна">
+          <button id="кнопка-чита-ок" type="button">Открыть</button>
+          <button id="кнопка-чита-отмена" type="button">Отмена</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <p class="подсказка-внизу">
